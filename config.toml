@@ -1,0 +1,4 @@
+baseURL = 'https://oharkins.github.io/'
+languageCode = 'en-us'
+title = 'Thoughts of a Dev'
+theme = 'ananke'

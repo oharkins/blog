@@ -25,5 +25,3 @@ In the "HTTP Headers" section, add the x-amazon-apigateway-integration header wi
 Save your changes and deploy your API.
 
 Now you can use your API Gateway API to perform Rekognition operations by sending a POST request to the endpoint you created. The x-amazon-apigateway-integration header will ensure that the request is forwarded to the Rekognition service and the response will be returned to the client.
-
-I hope this helps! Let me know if you have any questions.

@@ -1,0 +1,126 @@
+baseURL: 'https://oharkins.github.io/'
+languageCode: 'en-us'
+title: 'Thoughts of a Dev'
+theme: 'loveit'
+defaultContentLanguage: en
+languageCode: en
+languageName: English
+hasCJKLanguage: false
+paginate: 12
+googleAnalytics: ''
+copyright: ''
+enableRobotsTXT: true
+enableGitInfo: true
+enableEmoji: true
+
+author:
+  name: Odis Harkins
+  email: ''
+  link: ''
+
+params:
+  defaultTheme: auto
+  gitRepo: 'https://github.com/dillonzq/LoveIt'
+  fingerprint: ''
+  dateFormat: '2006-01-02'
+  title: LoveIt
+  description: Hugo theme - LoveIt
+  images:
+    - /logo.png
+  header:
+    desktopMode: fixed
+    mobileMode: auto
+    title:
+      logo: ''
+      name: Thoughts of a Dev
+      pre: ''
+      post: ''
+      typeit: false
+  footer:
+    enable: true
+    custom: ''
+    hugo: false
+    copyright: true
+    author: true
+    since: 2019
+    icp: ''
+  section:
+    paginate: 20
+    dateFormat: 01-02
+    rss: 10
+  list:
+    paginate: 20
+    dateFormat: 01-02
+    rss: 10
+  app:
+    title: LoveIt
+    noFavicon: false
+    svgFavicon: ''
+    themeColor: '#ffffff'
+    iconColor: '#5bbad5'
+    tileColor: '#da532c'
+  search:
+    enable: true
+    type: algolia
+    contentLength: 4000
+    placeholder: ''
+    maxResultLength: 10
+    snippetLength: 30
+    highlightTag: em
+    absoluteURL: false
+    algolia:
+      index: ''
+      appID: ''
+      searchKey: ''
+  home:
+    rss: 10
+    profile:
+      enable: true
+      gravatarEmail: ''
+      avatarURL: /images/avatar.png
+      title: ''
+      subtitle: 'Ideas and Thought Storage'
+      typeit: true
+      social: true
+      disclaimer: ''
+    posts:
+      enable: true
+      paginate: 6
+  social:
+    linkedin: "odisharkins"
+    github: "oharkins"
+  page:
+    hiddenFromHomePage: false
+    hiddenFromSearch: false
+    twemoji: false
+    lightgallery: false
+    ruby: true
+    fraction: true
+    fontawesome: true
+    linkToMarkdown: true
+    code:
+      copy: true
+      maxShownLines: 50
+    share:
+      enable: true
+      Twitter: true
+      Facebook: true
+      Linkedin: true
+      HackerNews: true
+      Reddit: true
+      
+
+menu:
+  main:
+    - identifer: categories
+      name: Categories
+      url: /categories/
+      weight: 10
+    - identifer: tags
+      name: Tags
+      url: /tags/
+      weight: 20
+    - identifer: archives
+      name: Archives
+      url: /archives/
+      weight: 30

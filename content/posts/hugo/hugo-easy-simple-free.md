@@ -1,6 +1,13 @@
 ---
 title: "Hugo! Easy Simple Free!"
 date: 2022-12-23T15:17:00-07:00
+author: "Odis Harkins"
+authorLink: "/aboutme/"
+resources:
+- name: "featured-image"
+  src: "featured-image.jpg"
+tags: ["Blogging"]
+categories: ["Serverless","Hosting"]
 ---
 
 Are you looking to set up a new blog and wondering which platform to use? Consider giving Hugo a try! Hugo is a static site generator that makes it easy to create fast, secure, and scalable websites. In this blog post, we'll walk through the process of setting up a Hugo blog and show you just how easy it is.

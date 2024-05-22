@@ -3,7 +3,6 @@ languageCode: 'en-us'
 title: 'Thoughts of a Dev'
 theme: 'loveit'
 defaultContentLanguage: en
-languageCode: en
 languageName: English
 hasCJKLanguage: false
 paginate: 12

@@ -1,5 +1,5 @@
 /public/
-/resources/_gen/
+/resources/
 hugo.exe
 hugo.linux
 hugo.darwin

@@ -1,0 +1,13 @@
+/public/
+/resources/_gen/
+hugo.exe
+hugo.linux
+hugo.darwin
+
+# MacOS
+.DS_Store
+
+# Node.js
+node_modules
+dist
+tmp

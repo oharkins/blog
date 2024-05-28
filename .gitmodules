@@ -4,3 +4,6 @@
 [submodule "themes/loveit"]
 	path = themes/loveit
 	url = https://github.com/dillonzq/LoveIt
+[submodule "themes/github-style"]
+	path = themes/github-style
+	url = git@github.com:MeiK2333/github-style.git

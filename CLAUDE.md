@@ -1,0 +1,158 @@
+# CLAUDE.md
+
+This file provides guidance for AI assistants working in this repository.
+
+## Project Overview
+
+**"Thoughts of a Dev"** is a personal technical blog by Odis Harkins, built with [Hugo](https://gohugo.io/) and deployed to GitHub Pages at https://oharkins.github.io/. Content focuses on software development, AWS, and tooling topics.
+
+## Tech Stack
+
+- **Static Site Generator:** Hugo 0.108.0 (extended edition)
+- **Theme:** `github-style` (git submodule at `themes/github-style/`)
+- **Content Format:** Markdown with YAML frontmatter
+- **Deployment:** GitHub Actions → GitHub Pages (auto-deploys on push to `master`)
+- **CSS Preprocessor:** Dart Sass Embedded (used by Hugo's extended build)
+
+## Repository Structure
+
+```
+/
+├── .github/workflows/hugo.yml   # CI/CD: build + deploy to GitHub Pages
+├── archetypes/default.md        # Template for new content (hugo new ...)
+├── content/
+│   ├── aboutme.md               # About page (currently draft: true)
+│   ├── archives.md              # Auto-generated archives listing
+│   └── post/                    # Blog posts directory
+│       ├── <post-name>.md       # Flat post files
+│       └── <post-name>/         # Post bundle (when including local assets)
+│           ├── index.md
+│           └── featured-image.jpg
+├── static/images/               # Site-wide images (avatar, icons)
+├── themes/                      # Git submodules — do not edit directly
+│   ├── github-style/            # Active theme
+│   ├── ananke/                  # Available alternative
+│   └── loveit/                  # Available alternative (config commented out)
+└── config.yaml                  # Hugo site configuration
+```
+
+## Common Commands
+
+```bash
+# Local development server (live reload at http://localhost:1313/)
+hugo server
+
+# Include draft posts in dev server
+hugo server -D
+
+# Create a new post (uses archetypes/default.md template)
+hugo new post/my-post-title.md
+
+# Production build (outputs to /public/, gitignored)
+hugo --minify
+
+# Update theme submodules
+git submodule update --remote --merge
+```
+
+## Content Conventions
+
+### Frontmatter
+
+All posts use YAML frontmatter. Required fields:
+
+```yaml
+---
+title: "Human-Readable Post Title"
+date: 2024-01-15T10:00:00-07:00
+draft: false
+---
+```
+
+Extended frontmatter (optional but recommended for posts):
+
+```yaml
+---
+title: "Post Title"
+date: 2024-01-15T10:00:00-07:00
+author: "Odis Harkins"
+authorLink: "/aboutme/"
+tags: ["AWS", "Serverless"]
+categories: ["Cloud", "Development"]
+resources:
+- name: "featured-image"
+  src: "featured-image.jpg"
+draft: false
+---
+```
+
+### File Naming
+
+- Use **kebab-case** for all filenames: `my-post-title.md`
+- Place posts in `content/post/`
+- If a post needs local assets (e.g., featured image), create a **page bundle**: a subdirectory containing `index.md` (not `<name>.md`) and the asset files
+
+### Draft Posts
+
+- New posts created via `hugo new` start with `draft: true`
+- Change to `draft: false` when ready to publish
+- `content/aboutme.md` is currently a draft — do not publish without content
+
+### Tags and Categories
+
+- Use **Title Case** for tags and categories
+- Tags: fine-grained topics (e.g., `"Blogging"`, `"AWS"`)
+- Categories: broader groupings (e.g., `"Serverless"`, `"Hosting"`)
+
+## Configuration (config.yaml)
+
+Key settings:
+
+| Setting | Value |
+|---|---|
+| `baseURL` | `https://oharkins.github.io/` |
+| `theme` | `github-style` |
+| `paginate` | 12 posts per page |
+| `enableGitInfo` | `true` (last-modified from git history) |
+| `enableEmoji` | `true` |
+
+The `params.gitalk` block exists in config but `enableGitalk: false` — commenting system is disabled.
+
+An alternative LoveIt theme config is fully commented out at the bottom of `config.yaml`. Do not uncomment it unless intentionally switching themes.
+
+## Deployment
+
+Deployment is fully automated:
+
+1. Push to `master` branch
+2. GitHub Actions runs `.github/workflows/hugo.yml`
+3. Hugo builds the site with `--minify`
+4. Output is deployed to GitHub Pages
+
+**The `master` branch is the production branch.** Changes pushed there go live automatically.
+
+## Git Submodules
+
+Themes are managed as git submodules. When cloning fresh:
+
+```bash
+git clone --recurse-submodules <repo-url>
+# or after a plain clone:
+git submodule update --init --recursive
+```
+
+Do not directly edit files inside `themes/`. Theme customizations belong in the root-level `layouts/`, `assets/`, or `static/` directories (Hugo's lookup order overrides theme files).
+
+## Development Workflow
+
+- Feature branches should branch off `master`
+- There are no automated tests — Hugo's build process (`hugo`) serves as the validation step
+- Verify the site builds without errors before merging: `hugo --minify`
+- The `/public/` directory is gitignored and generated at build time
+
+## What Not To Do
+
+- Do not commit the `/public/` directory (gitignored, generated by CI)
+- Do not edit files inside `themes/` subdirectories
+- Do not push secrets — `config.yaml` has placeholder gitalk credentials; keep them as placeholders or configure via environment variables
+- Do not rename `content/post/` to `content/posts/` — the directory was intentionally renamed from `posts` to `post` (see commit history)

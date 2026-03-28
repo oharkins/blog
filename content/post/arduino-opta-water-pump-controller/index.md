@@ -10,11 +10,17 @@ draft: false
 
 When our well pump started acting up, I figured it was a perfect excuse to build something more than a simple on/off switch. I wanted real-time monitoring, intelligent fault protection, and full Home Assistant integration — so I built an industrial-grade controller using the **Arduino Opta**.
 
+<!-- TODO: Add photo of the finished controller mounted in the panel -->
+![Finished controller mounted in panel](panel-installed.jpg)
+
 ## Why the Arduino Opta?
 
 The [Arduino Opta](https://www.arduino.cc/en/hardware/opta) sits in a unique space: it's a proper industrial PLC form factor with DIN rail mounting, relay outputs, and built-in Ethernet, but it's fully programmable with the Arduino ecosystem. That last part is what sold me — I didn't want to learn ladder logic, I wanted to write C++ and have it work.
 
 A key caveat: the Opta must run on the **Mbed OS core**, not the newer Zephyr core. The Ethernet library has compatibility issues with Zephyr, so stick with Mbed if you want networking.
+
+<!-- TODO: Add photo of the Arduino Opta board itself -->
+![Arduino Opta board](arduino-opta-board.jpg)
 
 ## System Architecture
 
@@ -40,6 +46,9 @@ The controller has a physical 3-position mode selector switch on the panel:
 
 **AUTO** — Full protection mode. All fault systems are active, and the pump starts automatically when selected (assuming no active faults).
 
+<!-- TODO: Add photo of the 3-position mode selector switch on the panel -->
+![Mode selector switch](mode-selector.jpg)
+
 ## Sensor Inputs and Fault Protection
 
 The system monitors four analog inputs:
@@ -53,6 +62,9 @@ The system monitors four analog inputs:
 
 The digital inputs (A5–A7) handle the reset button and mode selector. **One critical hardware note:** the Opta's analog input pins do not support internal pull-ups. You must wire **external 10K pull-up resistors** on these pins or you'll get floating inputs and erratic behavior. Learned that the hard way.
 
+<!-- TODO: Add photo of the sensor wiring / terminal connections -->
+![Sensor wiring and terminal connections](sensor-wiring.jpg)
+
 ### Fault Logic
 
 Rather than tripping immediately on a threshold crossing, every fault uses a **sustained violation window** to avoid false trips during normal transients:
@@ -65,6 +77,9 @@ Rather than tripping immediately on a threshold crossing, every fault uses a **s
 After any fault clears via the reset button, there's a 6-second grace period before fault checking re-enables. This prevents the controller from immediately re-latching if the underlying condition takes a moment to resolve.
 
 The four front-panel LEDs map directly to fault types, so a glance at the panel tells you exactly what's wrong without needing a phone or laptop.
+
+<!-- TODO: Add photo of the front-panel LEDs lit up during a fault condition -->
+![Front-panel fault indicator LEDs](fault-leds.jpg)
 
 ## Home Assistant Integration via MQTT
 
@@ -85,6 +100,9 @@ The controller publishes sensor data every second and uses **MQTT auto-discovery
 
 The availability topic is particularly useful — if the controller loses power or crashes, Home Assistant marks all entities as unavailable rather than showing stale data.
 
+<!-- TODO: Add screenshot of the Home Assistant dashboard showing the pump entities -->
+![Home Assistant dashboard](home-assistant-dashboard.jpg)
+
 ## What I'd Do Differently
 
 A few lessons from the build:
@@ -93,7 +111,7 @@ A few lessons from the build:
 
 2. **Use shielded cable for the analog runs.** The pump motor created enough electrical noise to cause occasional jitter on the current sensor before I switched cables.
 
-3. **Add a local display.** The serial debug output at 115200 baud is great during development, but I'm planning to add a small OLED to show live pressure and current without needing a laptop nearby.
+3. **Dial in fault thresholds before going live.** The default values are conservative — worth running the pump through a full cycle and logging the actual pressure and current curves before tightening them up.
 
 ## The Code
 

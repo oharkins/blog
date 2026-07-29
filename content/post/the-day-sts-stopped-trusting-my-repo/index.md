@@ -1,7 +1,9 @@
 ---
 title: "The Day STS Stopped Trusting My Repo"
-date: 2025-07-29T12:00:00-06:00
-url: /post/the-day-sts-stopped-trusting-my-repo/
+date: "2025-07-29T12:00:00-06:00"
+description: "How GitHub's immutable OIDC subject claims silently broke my AWS trust policy and how to fix it"
+categories: ["AWS", "Security"]
+tags: ["aws", "github-actions", "oidc", "security"]
 ---
 
 ![The Day STS Stopped Trusting My Repo](sts-stoped-trusting-my-repo.png)

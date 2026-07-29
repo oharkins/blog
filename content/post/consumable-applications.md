@@ -1,6 +1,9 @@
 ---
 title: "Writing Cross-Divisional Consumable Applications"
-date: 2024-10-04T15:58:30-07:00
+date: "2024-10-04T15:58:30-07:00"
+description: "Key strategies for building applications that can be adopted and reused across divisions"
+categories: ["Development"]
+tags: ["development", "tech"]
 ---
 
 # Writing Cross-Divisional Consumable Applications

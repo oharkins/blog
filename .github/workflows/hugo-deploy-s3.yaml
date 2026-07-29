@@ -1,0 +1,30 @@
+name: Hugo Build and Deploy to S3
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out master
+        uses: actions/checkout@master
+
+      - name: Deploy Hugo to S3 and Cloudfront using OIDC
+        uses: oharkins/hugo-to-s3-action-oidc@v0.0.2
+        with:
+          hugo-version: 0.136.5
+          target: production
+          pipeline-execution-role: "arn:aws:iam::860588163062:role/odisharkins.com_Deployment_Role"
+          aws-region: us-west-2

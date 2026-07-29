@@ -1,6 +1,9 @@
 ---
-title: "Harnessing AWS API Gateway and AWS rekognition to Find Closest Image Matches In Collection"
-date: 2022-12-23T15:58:30-07:00
+title: "Harnessing AWS API Gateway and AWS Rekognition to Find Closest Image Matches In Collection"
+date: "2022-12-23T15:58:30-07:00"
+description: "Use AWS API Gateway and VTL to upload images and find the closest matches with AWS Rekognition"
+categories: ["AWS"]
+tags: ["serverless", "static-site"]
 ---
 
 In today's digital world, image recognition and matching have become crucial in various applications. AWS API Gateway, coupled with AWS Rekognition, offers a powerful combination to upload and process images, enabling us to find the closest matches effortlessly. In this article, we will explore how to utilize AWS API Gateway to upload images and leverage Velocity Template Language (VTL) to construct requests for AWS Rekognition to identify the closest image matches. 

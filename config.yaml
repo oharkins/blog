@@ -1,4 +1,4 @@
-baseURL: 'https://oharkins.github.io/'
+baseURL: 'https://oharkins.github.io/blog/'
 languageCode: 'en-us'
 title: 'Thoughts of a Dev'
 theme: 'github-style'
@@ -30,9 +30,9 @@ params:
   keywords: blog, google analytics
   rss: true
   lastmod: true
-  favicon: /images/avatar.png
-  avatar: /images/avatar.png
-  headerIcon: /images/home-w-32.png
+  favicon: images/avatar.png
+  avatar: images/avatar.png
+  headerIcon: images/home-w-32.png
   location: Montana, USA
   enableGitalk: false
   gitalk:

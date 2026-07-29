@@ -1,7 +1,7 @@
 ---
 title: "The Day STS Stopped Trusting My Repo"
 date: 2025-07-29T12:00:00-06:00
-image: /images/sts-stoped-trusting-my-repo.png
+cover: images/sts-stoped-trusting-my-repo.png
 ---
 
 Your workflow has `id-token: write`. The role ARN is right. The trust policy looks exactly like the one in every tutorial. And `aws-actions/configure-aws-credentials` still tells you to get lost:

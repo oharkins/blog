@@ -168,3 +168,14 @@ menu:
       name: Archives
       url: /archives/
       weight: 30
+
+
+
+deployment:
+  targets:
+    - name: "production"
+      URL: "s3://odisharkins.com?region=us-west-2"
+      cloudFrontDistributionID: "E36IX9TUDWB8LA"
+      headers:
+        Cache-Control: "max-age=31536000, no-transform, public"
+        X-Content-Type-Options: "nosniff"

@@ -1,9 +1,10 @@
 ---
 title: "The Day STS Stopped Trusting My Repo"
 date: 2025-07-29T12:00:00-06:00
+url: /post/the-day-sts-stopped-trusting-my-repo/
 ---
 
-![The Day STS Stopped Trusting My Repo](/images/sts-stoped-trusting-my-repo.png)
+![The Day STS Stopped Trusting My Repo](sts-stoped-trusting-my-repo.png)
 
 Your workflow has `id-token: write`. The role ARN is right. The trust policy looks exactly like the one in every tutorial. And `aws-actions/configure-aws-credentials` still tells you to get lost:
 

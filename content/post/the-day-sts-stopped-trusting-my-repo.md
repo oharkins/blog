@@ -1,8 +1,9 @@
 ---
 title: "The Day STS Stopped Trusting My Repo"
 date: 2025-07-29T12:00:00-06:00
-cover: images/sts-stoped-trusting-my-repo.png
 ---
+
+![The Day STS Stopped Trusting My Repo](/images/sts-stoped-trusting-my-repo.png)
 
 Your workflow has `id-token: write`. The role ARN is right. The trust policy looks exactly like the one in every tutorial. And `aws-actions/configure-aws-credentials` still tells you to get lost:
 
@@ -75,3 +76,9 @@ Re-run the workflow. `configure-aws-credentials` succeeds, and the workflow itse
 - The error message is about *matching*, not *authorization*. When the trust policy looks right, assume the incoming claim is not what you think it is.
 - Never reconstruct an OIDC subject from workflow context. Read it from the token or from CloudTrail — the identity provider is the source of truth.
 - If you manage trust policies at scale, audit them now rather than discovering this one pipeline at a time. Renames and transfers flip repos into immutable subjects, so a policy that works today can break on a rename with no code change at all.
+
+## References
+
+- [GitHub Docs — OpenID Connect reference: Immutable subject claims](https://docs.github.com/en/actions/reference/security/oidc#immutable-subject-claims)
+- [GitHub Blog Changelog — Immutable subject claims for GitHub Actions OIDC tokens](https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/)
+- [GitHub changed its OIDC subject claims and broke my AWS deploys (DEV Community)](https://dev.to/aws-builders/github-changed-its-oidc-subject-claims-and-broke-my-aws-deploys-for-new-repos-2cfp)
